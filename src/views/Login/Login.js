@@ -21,20 +21,27 @@ import { saveLoggedSession } from 'utils.js';
 
 const getClasses = makeStyles(()=>({
   background:{
-    backgroundImage: "url(" + bgImage + ")",
-    height: '100vh',
+    backgroundImage: "url(" + bgImage + ") ",
+    backgroundSize:"cover",
+    height:"100vh",
+   
+  },
+  textcenter:{
+    textAlign:"center", 
   }
 }));
 
 const i18n = {
   'cn':{
-    title: 'Nano管理门户',
+    title: '重庆三峡职业学院',
+    title2: '云计算中心',
     user: '用户名',
     password: '密码',
     login: '登录',
   },
   'en':{
-    title: 'Nano Web Portal',
+    title: 'chongqing Web Portal',
+    title2: 'chongqing Web Portal',
     user: 'User',
     password: 'Password',
     login: 'Login',
@@ -184,8 +191,9 @@ export default function Login(props){
           <Grid item xs={10} sm={6} md={4}>
             <Box mt={20} p={0}>
               <Card>
-                <CardHeader color="primary">
-                  <h4 className={classes.cardTitleWhite}>{texts.title}</h4>
+                <CardHeader color="primary" className={classes.textcenter}>
+                  <h2   className={classes.cardTitleWhite} >{texts.title}</h2>
+                  <h3 className={classes.cardTitleWhite}>{texts.title2}</h3>
                 </CardHeader>
                 <CardBody>
                   {content}

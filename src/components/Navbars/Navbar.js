@@ -16,8 +16,7 @@ import Hidden from "@material-ui/core/Hidden";
 import Menu from "@material-ui/icons/Menu";
 // core components
 import AdminNavbarLinks from "./AdminNavbarLinks.js";
-import Button from "components/CustomButtons/Button.js";
-import LanguageSelector from "components/Language/Selector.js";
+import Button from "components/CustomButtons/Button.js"; 
 
 import styles from "assets/jss/material-dashboard-react/components/headerStyle.js";
 import { getCurrentVersion } from 'nano_api.js';
@@ -57,20 +56,12 @@ export default function Header(props) {
   const version = (
     <Box mr={2}>
       <Typography component='span'>
-        {'Project Nano ' + getCurrentVersion() + ' © 2018~2020'}
+        {'三峡职业学院云计算中心 ' + getCurrentVersion() + ' © 2023'}
       </Typography>
     </Box>
   );
 
-  const manualButton = (
-    <Tooltip title={texts.manual} placement='top'>
-      <Link target='_blank' href={texts.manualURL}>
-        <IconButton color='default' size='small'>
-          <HelpOutlineIcon/>
-        </IconButton>
-      </Link>
-    </Tooltip>
-  )
+ 
 
   return (
     <AppBar className={classes.appBar + appBarClasses}>
@@ -82,10 +73,8 @@ export default function Header(props) {
           </Button>
         </div>
         <Hidden smDown>
-          {version}
-          {manualButton}
-        </Hidden>
-        <LanguageSelector lang={lang} setLang={setLang}/>
+          {version} 
+        </Hidden> 
         <Hidden smDown implementation="css">
           <AdminNavbarLinks lang={lang}/>
         </Hidden>

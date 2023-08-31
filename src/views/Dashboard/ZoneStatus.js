@@ -28,8 +28,7 @@ import {
 } from "assets/jss/material-dashboard-react.js";
 
 const i18n = {
-  'en':{
-    allButton: "Show All Compute Pools",
+  'en':{ 
     pools: 'Compute Pools Summary',
     cells: 'Compute Cells Summary',
     instances: 'Instances Summary',
@@ -55,8 +54,7 @@ const i18n = {
     write: 'Write',
     read: 'Read',
   },
-  'cn':{
-    allButton: "查看所有资源池",
+  'cn':{ 
     pools: '计算资源池总数',
     cells: '资源节点总数',
     instances: '云主机总数',
@@ -180,32 +178,7 @@ export default function ZoneStatus(props) {
   if (!status){
     content = <Skeleton variant="rect" style={{height: '10rem'}}/>;
   }else{
-    var startTime = new Date(status.start_time.replace(' ', 'T'));
-    var now = new Date();
-    var elapsedSeconds = Math.floor((now.getTime() - startTime.getTime())/1000);
-    var elapsedDays = Math.floor(elapsedSeconds/(24*3600));
-    elapsedSeconds -= elapsedDays*24*3600;
-    var elapsedHours = Math.floor(elapsedSeconds/3600);
-    elapsedSeconds -= elapsedHours*3600;
-    var elapsedMinutes = Math.floor(elapsedSeconds/60);
-    elapsedSeconds -= elapsedMinutes*60;
-    let uptimeText;
-    if('cn' === lang){
-      uptimeText = '系统启动时间 ' + status.start_time + ', 已运行 ' + elapsedDays + ' 天 ' + elapsedHours + ' 小时 ' + elapsedMinutes + ' 分 ' + elapsedSeconds + ' 秒';
-    }else{
-      uptimeText = 'System start at ' + status['start_time'] + ', Uptime: ' + elapsedDays + ' day, ' + elapsedHours + ' hour, ' + elapsedMinutes + ' min, ' + elapsedSeconds + ' secs';
-    }
-
-    const updateTime = (
-      <GridItem xs={12} key='uptime'>
-        <Box align='center'>
-          <Typography component='span' >
-            {uptimeText}
-          </Typography>
-        </Box>
-      </GridItem>
-    )
-
+     
     const [ disabledPools, enabledPools ] = status.pools;
     const poolData = [{
       value: disabledPools,
@@ -416,8 +389,7 @@ export default function ZoneStatus(props) {
           />
       </GridItem>
     )
-    content = [
-      updateTime,
+    content = [ 
       poolChart,
       cellChart,
       instanceChart,
@@ -430,21 +402,7 @@ export default function ZoneStatus(props) {
   }
 
   return (
-      <GridContainer>
-        <GridItem xs={12}>
-          <GridContainer>
-            <GridItem xs={6} sm={4} md={3}>
-              <Link to='/admin/dashboard/pools/'>
-                <Button size="sm" color="info" round><AllOutIcon />{texts.allButton}</Button>
-              </Link>
-            </GridItem>
-          </GridContainer>
-        </GridItem>
-        <GridItem xs={12}>
-          <Box mt={3} mb={3}>
-            <Divider/>
-          </Box>
-        </GridItem>
+      <GridContainer> 
         {content}
       </GridContainer>
   )

@@ -101,8 +101,8 @@ const sidebarStyle = theme => ({
     marginRight: "15px"
   },
   img: {
-    width: "35px",
-    top: "22px",
+    width: "80%",
+    top: "2px",
     position: "absolute",
     verticalAlign: "middle",
     border: "0"

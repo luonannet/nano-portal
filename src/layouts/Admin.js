@@ -16,7 +16,7 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import bgImage from "assets/img/sidebar.jpg";
 // import logo from "assets/img/reactlogo.png";
 // import logo from "assets/img/nano.ico";
-import logo from "assets/img/nano_white.svg";
+import logo from "assets/img/logo.png";
 import { getLoggedSession, redirectToLogin } from 'utils.js';
 
 let ps;
@@ -104,7 +104,7 @@ export default function Admin({ lang, setLang, ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={authorizedMenus}
-        logoText={"Nano Portal"}
+        logoText={""}
         logo={logo}
         image={bgImage}
         handleDrawerToggle={handleDrawerToggle}
