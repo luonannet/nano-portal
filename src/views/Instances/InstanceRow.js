@@ -275,6 +275,7 @@ export default function InstanceRow(props){
       </Tooltip>
     );
     statusIcon = [runningIcon];
+    // ---------------------------------  管控权限
     operators = [ controllOperator, stopOperator, forceStopOperator,
       rebootOperator, resetOperator];
     if (instance.auto_start){

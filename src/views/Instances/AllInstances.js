@@ -59,6 +59,10 @@ const styles = {
       fontWeight: "400",
       lineHeight: "1"
     }
+  },
+  mr20:{
+    marginRight:"20px",
+    marginLeft:"20px"
   }
 };
 
@@ -581,7 +585,7 @@ export default function AllInstances(props){
     }
 
     const poolSelector = (
-      <Box m={0} pb={2}>
+      <div  className={classes.mr20}  >
         <InputLabel htmlFor="pool" className={classes.cardCategory}>
           {texts.pool}
         </InputLabel>
@@ -600,11 +604,11 @@ export default function AllInstances(props){
             ))
           }
         </Select>
-      </Box>
+      </div>
     );
 
     const cellSelector = (
-      <Box m={0} pb={2}>
+      <div  className={classes.mr20}   >
         <InputLabel htmlFor="cell" className={classes.cardCategory}>{texts.cell}</InputLabel>
         <Select
           value={scope.cell}
@@ -632,7 +636,7 @@ export default function AllInstances(props){
             })
           }
         </Select>
-      </Box>
+      </div>
     );
 
     var batchTargets = [];
@@ -646,36 +650,19 @@ export default function AllInstances(props){
     }
 
     return (
-      <GridContainer>
-        <GridItem xs={12}>
-          <GridContainer>
-            <GridItem xs={6} sm={4} md={2}>
-              {poolSelector}
-            </GridItem>
-            <GridItem xs={6} sm={4} md={2}>
-              {cellSelector}
-            </GridItem>
-          </GridContainer>
-        </GridItem>
-        <GridItem xs={12}>
-          <Box mt={3} mb={3}>
-            <Divider/>
-          </Box>
-        </GridItem>
-        <GridItem xs={12}>
-          <Box display='flex'>
+      <GridContainer display='flex'> 
+          {poolSelector}
+          {cellSelector}
             {
               buttonProperties.map(({label, color, icon, onClick}, key) =>(
-                <Box key={key} m={1}>
-                  <Button size="sm" color={color} round onClick={onClick}>
+                
+                  <Button size="sm"  key={key} m={0} mr={2} color={color}   onClick={onClick}>
                     {React.createElement(icon)}
                     {label}
                   </Button>
-                </Box>
+                
               ))
-            }
-          </Box>
-        </GridItem>
+            } 
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="primary">

@@ -143,6 +143,7 @@ export function updateSession(onFail){
 }
 
 export function openMonitorChannel(instanceID, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/monitor_channels/';
   const request = {
     guest: instanceID,
@@ -200,6 +201,7 @@ export function getComputePool(poolName, onSuccess, onFail){
 }
 
 export function createComputePool(poolName, storage, network, failover, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var url = '/compute_pools/' + poolName;
   var request = {
     storage: storage,
@@ -213,6 +215,7 @@ export function createComputePool(poolName, storage, network, failover, onSucces
 }
 
 export function modifyComputePool(poolName, storage, network, failover, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var url = '/compute_pools/' + poolName;
   var request = {
     storage: storage,
@@ -226,6 +229,7 @@ export function modifyComputePool(poolName, storage, network, failover, onSucces
 }
 
 export function deleteComputePool(poolName, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onDeleteSuccess = () => {
     onSuccess(poolName);
   }
@@ -246,6 +250,7 @@ export function queryComputeCellsInPool(poolName, onSuccess, onFail){
 }
 
 export function addComputeCell(poolName, cellName, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var url = '/compute_pool_cells/' + poolName + '/' + cellName;
   const onAddSuccess = () =>{
     onSuccess(poolName, cellName);
@@ -254,6 +259,7 @@ export function addComputeCell(poolName, cellName, onSuccess, onFail){
 }
 
 export function modifyComputeCell(poolName, cellName, enable, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var url = '/compute_pool_cells/' + poolName + '/' + cellName;
   var request = {
     enable: enable,
@@ -265,6 +271,7 @@ export function modifyComputeCell(poolName, cellName, enable, onSuccess, onFail)
 }
 
 export function removeComputeCell(poolName, cellName, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var url = '/compute_pool_cells/' + poolName + '/' + cellName;
   const onRemoveSuccess = () =>{
     onSuccess(poolName, cellName);
@@ -286,6 +293,7 @@ export function queryComputeCellStorages(poolName, cellName, onSuccess, onFail){
 }
 
 export function changeComputeCellStorage(poolName, cellName, pathName, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/compute_cell_status/' + poolName + '/' + cellName + "/storages/";
   var payload = {
     default: pathName,
@@ -306,6 +314,7 @@ export function getStoragePool(name, onSuccess, onFail){
 }
 
 export function createStoragePool(name, type, host, target, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(name);
   }
@@ -318,6 +327,7 @@ export function createStoragePool(name, type, host, target, onSuccess, onFail){
 }
 
 export function modifyStoragePool(name, type, host, target, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(name);
   }
@@ -330,6 +340,7 @@ export function modifyStoragePool(name, type, host, target, onSuccess, onFail){
 }
 
 export function deleteStoragePool(name, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(name);
   }
@@ -346,6 +357,7 @@ export function getNetworkPool(name, onSuccess, onFail){
 }
 
 export function createNetworkPool(name, gateway, provider, dnsList, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(name);
   }
@@ -358,6 +370,7 @@ export function createNetworkPool(name, gateway, provider, dnsList, onSuccess, o
 }
 
 export function modifyNetworkPool(name, gateway, provider, dnsList, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(name);
   }
@@ -370,6 +383,7 @@ export function modifyNetworkPool(name, gateway, provider, dnsList, onSuccess, o
 }
 
 export function deleteNetworkPool(name, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(name);
   }
@@ -385,6 +399,7 @@ export function getAddressRangeStatus(poolName, rangeType, startAddress, onSucce
 }
 
 export function addAddressRange(poolName, rangeType, startAddress, endAddress, mask, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/address_pools/' + poolName + '/'+ rangeType +'/ranges/' + startAddress;
   const request = {
     end: endAddress,
@@ -397,6 +412,7 @@ export function addAddressRange(poolName, rangeType, startAddress, endAddress, m
 }
 
 export function removeAddressRange(poolName, rangeType, startAddress, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/address_pools/' + poolName + '/'+ rangeType +'/ranges/' + startAddress;
   const onOperateSuccess = () => {
     onSuccess(startAddress, poolName);
@@ -447,6 +463,7 @@ export function getInstanceStatus(id, onSuccess, onFail, onCreating){
 
 export function createInstance(name, pool, cores, memory, disks, autoStartup,
   fromImage, systemVersion, modules, cloudInit, qos, security_policy, onAccept, onSuccess, onFail){
+     if ( checkAdminGroup(onFail) == false) { return };
     var session = getLoggedSession();
     if (null === session){
       onFail('session expired');
@@ -489,6 +506,7 @@ export function createInstance(name, pool, cores, memory, disks, autoStartup,
 }
 
 export function deleteInstance(id, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var request = {
     force: false,
   }
@@ -496,6 +514,8 @@ export function deleteInstance(id, onSuccess, onFail){
 }
 
 export function startInstance(id, onSuccess, onFail){
+  
+   if ( checkAdminGroup(onFail) == false) { return };
   const onStartSuccess = () =>{
     onSuccess(id);
   }
@@ -503,7 +523,9 @@ export function startInstance(id, onSuccess, onFail){
 }
 
 export function startInstanceWithMedia(instanceID, imageID, onSuccess, onFail){
-  const onStartSuccess = () =>{
+ 
+   if ( checkAdminGroup(onFail) == false) { return };
+   const onStartSuccess = () =>{
     onSuccess(instanceID);
   }
   const request = {
@@ -514,6 +536,7 @@ export function startInstanceWithMedia(instanceID, imageID, onSuccess, onFail){
 }
 
 export function insertMedia(instanceID, imageID, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(instanceID);
   }
@@ -524,13 +547,28 @@ export function insertMedia(instanceID, imageID, onSuccess, onFail){
 }
 
 export function ejectMedia(instanceID, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(instanceID);
   }
   deleteRequest('/instances/' + instanceID + '/media', onOperateSuccess, onFail);
 }
-
+// 检查是不是Admin组的，如果不是。禁止关键操作
+export function checkAdminGroup(  onFail){
+  var session = getLoggedSession();
+  if (session ==null){
+    onFail('session expired');
+    return true;
+  }
+  if (session.group !="admin"){
+    onFail('只有admin组才能执行此操作');
+    return false;
+  }
+}
 export function stopInstance(id, onSuccess, onFail){
+  
+ if ( checkAdminGroup(onFail) == false) { return }
+
   const onStopSuccess = () =>{
     onSuccess(id);
   }
@@ -538,10 +576,12 @@ export function stopInstance(id, onSuccess, onFail){
     reboot: false,
     force: false,
   }
+
   deleteRequestWithPayload('/instances/' + id, payload, onStopSuccess, onFail);
 }
 
 export function forceStopInstance(id, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onStopSuccess = () =>{
     onSuccess(id);
   }
@@ -553,6 +593,7 @@ export function forceStopInstance(id, onSuccess, onFail){
 }
 
 export function restartInstance(id, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onRestartSuccess = () =>{
     onSuccess(id);
   }
@@ -564,6 +605,7 @@ export function restartInstance(id, onSuccess, onFail){
 }
 
 export function resetInstance(id, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onRestartSuccess = () =>{
     onSuccess(id);
   }
@@ -575,6 +617,7 @@ export function resetInstance(id, onSuccess, onFail){
 }
 
 export function resetSystem(instanceID, imageID, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(instanceID);
   }
@@ -585,6 +628,7 @@ export function resetSystem(instanceID, imageID, onSuccess, onFail){
 }
 
 export function resetMonitorSecret(instanceID, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = "/guests/" + instanceID + "/monitor/secret";
   const onOperateSuccess = () =>{
     onSuccess(instanceID);
@@ -593,6 +637,7 @@ export function resetMonitorSecret(instanceID, onSuccess, onFail){
 }
 
 export function modifyInstanceName(instanceID, name, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(name, instanceID);
   }
@@ -603,6 +648,7 @@ export function modifyInstanceName(instanceID, name, onSuccess, onFail){
 }
 
 export function modifyInstanceCores(instanceID, cores, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(cores, instanceID);
   }
@@ -613,6 +659,7 @@ export function modifyInstanceCores(instanceID, cores, onSuccess, onFail){
 }
 
 export function modifyInstanceMemory(instanceID, sizeInBytes, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(sizeInBytes, instanceID);
   }
@@ -623,6 +670,7 @@ export function modifyInstanceMemory(instanceID, sizeInBytes, onSuccess, onFail)
 }
 
 export function resizeInstanceDisk(instanceID, index, sizeInBytes, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(index, sizeInBytes, instanceID);
   }
@@ -633,6 +681,7 @@ export function resizeInstanceDisk(instanceID, index, sizeInBytes, onSuccess, on
 }
 
 export function shrinkInstanceDisk(instanceID, index, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(index, instanceID);
   }
@@ -643,6 +692,7 @@ export function shrinkInstanceDisk(instanceID, index, onSuccess, onFail){
 }
 
 export function modifyInstanceAdminPassword(instanceID, user, password, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = ({user, password}) =>{
     onSuccess(user, password, instanceID);
   }
@@ -658,6 +708,7 @@ export function modifyInstanceAdminPassword(instanceID, user, password, onSucces
 }
 
 export function getInstanceAdminPassword(instanceID, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = ({user, password}) =>{
     onSuccess(user, password, instanceID);
   }
@@ -665,6 +716,7 @@ export function getInstanceAdminPassword(instanceID, onSuccess, onFail){
 }
 
 export function modifyInstancePriority(instanceID, priority, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(priority, instanceID);
   }
@@ -675,6 +727,7 @@ export function modifyInstancePriority(instanceID, priority, onSuccess, onFail){
 }
 
 export function modifyInstanceDiskIOPS(instanceID, iops, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(iops, instanceID);
   }
@@ -686,6 +739,7 @@ export function modifyInstanceDiskIOPS(instanceID, iops, onSuccess, onFail){
 }
 
 export function modifyInstanceBandwidth(instanceID, inbound, outbound, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(inbound, outbound, instanceID);
   }
@@ -703,6 +757,7 @@ export function queryInstanceSnapshots(instanceID, onSuccess, onFail){
 }
 
 export function createInstanceSnapshot(instanceID, name, description, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/instances/' + instanceID + '/snapshots/';
   const request = {
     name: name,
@@ -720,6 +775,7 @@ export function getInstanceSnapshot(instanceID, name, onSuccess, onFail){
 }
 
 export function deleteInstanceSnapshot(instanceID, name, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/instances/' + instanceID + '/snapshots/' + name;
   const onOperateSuccess = () =>{
     onSuccess(name, instanceID)
@@ -728,6 +784,7 @@ export function deleteInstanceSnapshot(instanceID, name, onSuccess, onFail){
 }
 
 export function restoreInstanceSnapshot(instanceID, name, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/instances/' + instanceID + '/snapshots/';
   const request = {
     target: name,
@@ -739,6 +796,7 @@ export function restoreInstanceSnapshot(instanceID, name, onSuccess, onFail){
 }
 
 export function migrateSingleInstance(sourcePool, sourceCell, targetCell, instanceID, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(instanceID);
   }
@@ -752,6 +810,7 @@ export function migrateSingleInstance(sourcePool, sourceCell, targetCell, instan
 }
 
 export function migrateInstancesInCell(sourcePool, sourceCell, targetCell, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const onOperateSuccess = () =>{
     onSuccess(sourceCell, targetCell);
   }
@@ -770,6 +829,7 @@ export function getGuestSecurityPolicy(guestID, onSuccess, onFail){
 }
 
 export function changeGuestSecurityPolicyAction(guestID, action, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = "/guests/" + guestID + "/security_policy/default_action";
   var request = {
     action: action,
@@ -781,6 +841,7 @@ export function changeGuestSecurityPolicyAction(guestID, action, onSuccess, onFa
 }
 
 export function addGuestSecurityRule(guestID, action, protocol, to_port, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = "/guests/" + guestID + "/security_policy/rules/";
   var request = {
     action: action,
@@ -794,6 +855,7 @@ export function addGuestSecurityRule(guestID, action, protocol, to_port, onSucce
 }
 
 export function modifyGuestSecurityRule(guestID, index, action, protocol, to_port, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = "/guests/" + guestID + "/security_policy/rules/" + index;
   var request = {
     action: action,
@@ -807,6 +869,7 @@ export function modifyGuestSecurityRule(guestID, index, action, protocol, to_por
 }
 
 export function removeGuestSecurityRule(guestID, index, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = "/guests/" + guestID + "/security_policy/rules/" + index;
   const onOperateSuccess = () =>{
     onSuccess(guestID, index);
@@ -815,6 +878,7 @@ export function removeGuestSecurityRule(guestID, index, onSuccess, onFail){
 }
 
 export function moveUpGuestSecurityRule(guestID, index, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/guests/' + guestID + '/security_policy/rules/' + index + '/order';
   const request = {
     direction: "up",
@@ -826,6 +890,7 @@ export function moveUpGuestSecurityRule(guestID, index, onSuccess, onFail){
 }
 
 export function moveDownGuestSecurityRule(guestID, index, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/guests/' + guestID + '/security_policy/rules/' + index + '/order';
   const request = {
     direction: "down",
@@ -842,6 +907,7 @@ export function searchMediaImages(onSuccess, onFail){
 }
 
 export function syncMediaImages(onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var session = getLoggedSession();
   if (null === session){
     onFail('session expired');
@@ -860,6 +926,7 @@ export function getMediaImage(id, onSuccess, onFail){
 }
 
 export function createMediaImage(name, description, tags, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var session = getLoggedSession();
   if (null === session){
     onFail('session expired');
@@ -880,6 +947,7 @@ export function createMediaImage(name, description, tags, onSuccess, onFail){
 }
 
 export function modifyMediaImage(id, name, description, tags, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var session = getLoggedSession();
   if (null === session){
     onFail('session expired');
@@ -900,6 +968,7 @@ export function modifyMediaImage(id, name, description, tags, onSuccess, onFail)
 }
 
 export function deleteMediaImage(id, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var url = '/media_images/' + id;
   const onDeleteSuccess = () =>{
     onSuccess(id);
@@ -908,6 +977,7 @@ export function deleteMediaImage(id, onSuccess, onFail){
 }
 
 export function uploadMediaImage(id, file, onProgress, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var url = '/media_images/' + id + '/file/';
   const onOperateSuccess = () =>{
     onSuccess(id);
@@ -921,6 +991,7 @@ export function searchDiskImages(onSuccess, onFail){
 }
 
 export function syncDiskImages(onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var session = getLoggedSession();
   if (null === session){
     onFail('session expired');
@@ -939,6 +1010,7 @@ export function getDiskImage(id, onSuccess, onFail){
 }
 
 export function createDiskImage(name, guest, description, tags, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var session = getLoggedSession();
   if (null === session){
     onFail('session expired');
@@ -962,6 +1034,7 @@ export function createDiskImage(name, guest, description, tags, onSuccess, onFai
 }
 
 export function modifyDiskImage(id, name, description, tags, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var session = getLoggedSession();
   if (null === session){
     onFail('session expired');
@@ -982,6 +1055,7 @@ export function modifyDiskImage(id, name, description, tags, onSuccess, onFail){
 }
 
 export function deleteDiskImage(id, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var url = '/disk_images/' + id;
   const onDeleteSuccess = () =>{
     onSuccess(id);
@@ -990,6 +1064,7 @@ export function deleteDiskImage(id, onSuccess, onFail){
 }
 
 export function uploadDiskImage(id, file, onProgress, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var url = '/disk_images/' + id + '/file/';
   const onOperateSuccess = () =>{
     onSuccess(id);
@@ -1005,6 +1080,7 @@ export function getDiskImageURL(id){
 //batch operates
 export function batchCreatingGuests(rule, prefix, count, pool, cores, memory, disks, autoStartup,
   fromImage, systemVersion, modules, cloudInit, qos, onAccept, onFail){
+     if ( checkAdminGroup(onFail) == false) { return };
     var session = getLoggedSession();
     if (null === session){
       onFail('session expired');
@@ -1060,6 +1136,7 @@ export function checkBatchCreatingStatus(batchID, onProcessing, onSuccess, onFai
 }
 
 export function batchDeletingGuests(idList, onAccept, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   if(!idList || 0 === idList.length){
     onFail('target is empty');
     return;
@@ -1093,6 +1170,7 @@ export function checkBatchDeletingStatus(batchID, onProcessing, onSuccess, onFai
 }
 
 export function batchStoppingGuests(idList, onAccept, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   if(!idList || 0 === idList.length){
     onFail('target is empty');
     return;
@@ -1112,6 +1190,7 @@ export function batchStoppingGuests(idList, onAccept, onFail){
 }
 
 export function checkBatchStoppingStatus(batchID, onProcessing, onSuccess, onFail){
+ 
   const url = '/batch/stop_guest/' + batchID;
   const onOperateSuccess = (status, data) =>{
     if (202 === status){
@@ -1139,6 +1218,7 @@ export function getSystemTemplate(templateID, onSuccess, onFail){
 
 export function createSystemTemplate(name, admin, system, disk, network, display,
   control, usb, tablet, onSuccess, onFail) {
+     if ( checkAdminGroup(onFail) == false) { return };
     const url = "/templates/";
     var payload = {
       name: name,
@@ -1163,6 +1243,7 @@ export function createSystemTemplate(name, admin, system, disk, network, display
 
 export function modifySystemTemplate(id, name, admin, system, disk, network, display,
   control, usb, tablet, onSuccess, onFail) {
+     if ( checkAdminGroup(onFail) == false) { return };
     const url = "/templates/" + id;
     var payload = {
       name: name,
@@ -1186,6 +1267,7 @@ export function modifySystemTemplate(id, name, admin, system, disk, network, dis
 }
 
 export function deleteSystemTemplate(templateID, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = "/templates/" + templateID;
   const onOperateSuccess = () =>{
     onSuccess(templateID);
@@ -1222,7 +1304,8 @@ export function getSecurityPolicyGroup(policyID, onSuccess, onFail){
 
 export function createSecurityPolicyGroup(name, description, enabled, isGlobal,
   action, onSuccess, onFail){
-  const url = '/security_policy_groups/';
+     if ( checkAdminGroup(onFail) == false) { return };
+    const url = '/security_policy_groups/';
   var session = getLoggedSession();
   if (null === session){
     onFail('session expired');
@@ -1245,7 +1328,8 @@ export function createSecurityPolicyGroup(name, description, enabled, isGlobal,
 
 export function modifySecurityPolicyGroup(policyID, name, description, enabled, isGlobal,
   action, onSuccess, onFail){
-  const url = '/security_policy_groups/' + policyID;
+     if ( checkAdminGroup(onFail) == false) { return };
+    const url = '/security_policy_groups/' + policyID;
   var session = getLoggedSession();
   if (null === session){
     onFail('session expired');
@@ -1267,6 +1351,7 @@ export function modifySecurityPolicyGroup(policyID, name, description, enabled, 
 }
 
 export function deleteSecurityPolicyGroup(policyID, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/security_policy_groups/' + policyID;
   const onOperateSuccess = () => {
     onSuccess(policyID);
@@ -1280,6 +1365,7 @@ export function getSecurityPolicyRules(policyID, onSuccess, onFail){
 }
 
 export function addSecurityPolicyRule(policyID, action, protocol, to_port, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/security_policy_groups/' + policyID + '/rules/';
   const request = {
     action: action,
@@ -1290,6 +1376,7 @@ export function addSecurityPolicyRule(policyID, action, protocol, to_port, onSuc
 }
 
 export function modifySecurityPolicyRule(policyID, index, action, protocol, to_port, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/security_policy_groups/' + policyID + '/rules/' + index;
   const request = {
     action: action,
@@ -1303,6 +1390,7 @@ export function modifySecurityPolicyRule(policyID, index, action, protocol, to_p
 }
 
 export function removeSecurityPolicyRule(policyID, index, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/security_policy_groups/' + policyID + '/rules/' + index;
   const onOperateSuccess = () => {
     onSuccess(policyID, index);
@@ -1311,6 +1399,7 @@ export function removeSecurityPolicyRule(policyID, index, onSuccess, onFail){
 }
 
 export function moveUpSecurityPolicyRule(policyID, index, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/security_policy_groups/' + policyID + '/rules/' + index + '/order';
   const request = {
     direction: 'up',
@@ -1322,6 +1411,7 @@ export function moveUpSecurityPolicyRule(policyID, index, onSuccess, onFail){
 }
 
 export function moveDownSecurityPolicyRule(policyID, index, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/security_policy_groups/' + policyID + '/rules/' + index + '/order';
   const request = {
     direction: 'down',
@@ -1343,6 +1433,7 @@ export function getRole(role, onSuccess, onFail){
 }
 
 export function addRole(role, menuList, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/roles/' + role;
   const request = {
     menu: menuList,
@@ -1354,6 +1445,7 @@ export function addRole(role, menuList, onSuccess, onFail){
 }
 
 export function modifyRole(role, menuList, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/roles/' + role;
   const request = {
     menu: menuList,
@@ -1365,6 +1457,7 @@ export function modifyRole(role, menuList, onSuccess, onFail){
 }
 
 export function removeRole(role, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/roles/' + role;
   const onOperateSuccess = () => {
     onSuccess(role);
@@ -1383,6 +1476,7 @@ export function getGroup(group, onSuccess, onFail){
 }
 
 export function addGroup(group, display, roleList, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/user_groups/' + group;
   var request = {
     display: display,
@@ -1397,6 +1491,7 @@ export function addGroup(group, display, roleList, onSuccess, onFail){
 }
 
 export function modifyGroup(group, display, roleList, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/user_groups/' + group;
   var request = {
   }
@@ -1413,6 +1508,7 @@ export function modifyGroup(group, display, roleList, onSuccess, onFail){
 }
 
 export function removeGroup(group, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/user_groups/' + group;
   const onOperateSuccess = () => {
     onSuccess(group);
@@ -1426,6 +1522,7 @@ export function queryGroupMembers(group, onSuccess, onFail){
 }
 
 export function addGroupMember(group, member, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/user_groups/' + group + '/members/' + member;
   var request = {
   }
@@ -1436,6 +1533,7 @@ export function addGroupMember(group, member, onSuccess, onFail){
 }
 
 export function removeGroupMember(group, member, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/user_groups/' + group + '/members/' + member;
   const onOperateSuccess = () => {
     onSuccess(member, group);
@@ -1455,6 +1553,7 @@ export function getUser(user, onSuccess, onFail){
 }
 
 export function createUser(user, password, nick, mail, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/users/' + user;
   var request = {
     password: password,
@@ -1472,6 +1571,7 @@ export function createUser(user, password, nick, mail, onSuccess, onFail){
 }
 
 export function modifyUser(user, nick, mail, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/users/' + user;
   var request = {
   }
@@ -1488,6 +1588,7 @@ export function modifyUser(user, nick, mail, onSuccess, onFail){
 }
 
 export function deleteUser(user, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/users/' + user;
   const onOperateSuccess = () =>{
     onSuccess(user);
@@ -1496,6 +1597,7 @@ export function deleteUser(user, onSuccess, onFail){
 }
 
 export function changeUserPassword(name, oldPassword, newPassword, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/users/' + name + '/password/';
   const onOperateSuccess = () =>{
     onSuccess(name);
@@ -1522,6 +1624,7 @@ export function getVisibilities(onSuccess, onFail){
 }
 
 export function setVisiblities(instance, disk, media, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/resource_visibilities/';
   var request = {
   }
@@ -1582,6 +1685,7 @@ export function writeLog(log, onSuccess, onFail){
 }
 
 export function deleteLog(entries, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   const url = '/logs/';
   const request = {
     entries: entries,
@@ -1597,7 +1701,8 @@ export function getSystemStatus(onSuccess, onFail){
 
 export function initialSystem(user, group, display, role, password,
   menuList, onSuccess, onFail){
-  const url = '/system/';
+     if ( checkAdminGroup(onFail) == false) { return };
+    const url = '/system/';
   var request = {
     user: user,
     password: password,
@@ -1657,6 +1762,7 @@ function deleteRequestWithPayload(url, request, onSuccess, onFail){
 }
 
 function uploadBinary(url, fileTag, fileData, onProgress, onSuccess, onFail){
+   if ( checkAdminGroup(onFail) == false) { return };
   var session = getLoggedSession();
   if (null === session){
     onFail('session expired');
