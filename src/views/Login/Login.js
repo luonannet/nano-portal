@@ -18,6 +18,7 @@ import bgImage from 'assets/img/login_background.jpg';
 import LanguageSelector from "components/Language/Selector.js";
 import { loginUser, writeLog, getSystemStatus } from 'nano_api.js';
 import { saveLoggedSession } from 'utils.js';
+import { Label } from "@material-ui/icons";
 
 const getClasses = makeStyles(()=>({
   background:{
@@ -53,8 +54,8 @@ export default function Login(props){
   const texts = i18n[lang];
   const classes = getClasses();
   const [ request, setRequest ] = React.useState({
-    user: '',
-    password: '',
+    user: 'Guest_001',
+    password: 'Guest_001',
     nonce: 'stub',
     type: 'manager',
   });
@@ -175,7 +176,7 @@ export default function Login(props){
           <Box alignItems='center' display='flex' m={1}>
             {button}
             <Box flexGrow={1}/>
-            <LanguageSelector lang={lang} setLang={setLang}/>
+            <LanguageSelector lang={lang} setLang={setLang}/>     
           </Box>
         </GridItem>
         <GridItem xs={12}>
